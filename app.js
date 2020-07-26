@@ -8,8 +8,7 @@ var express         = require("express"),
     methodOverride  = require("method-override"),
     Campground      = require("./models/campground"),
     Comment         = require("./models/comment"),
-    User            = require("./models/user"),
-    seedDB          = require("./seeds");
+    User            = require("./models/user");
 
 //=================
 // Require the routes
@@ -22,7 +21,6 @@ var commentRoutes    = require("./routes/comments"),
 //
 //=================
 
-// mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true});
 var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v2";
 mongoose.connect(url,  { useNewUrlParser: true, useUnifiedTopology: true});
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,7 +29,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.locals.moment = require('moment');
-// seedDB();
 
 //Passport config
 app.use(require("express-session")({
